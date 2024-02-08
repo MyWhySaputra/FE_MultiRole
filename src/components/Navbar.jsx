@@ -7,6 +7,7 @@ import { LogOut, reset } from "../features/authSlice";
 const Navbar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  // eslint-disable-next-line no-unused-vars
   const { user } = useSelector((state) => state.auth);
 
   const logout = () => {

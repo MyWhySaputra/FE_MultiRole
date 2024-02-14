@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { IoPerson, IoPricetag, IoHome, IoLogOut } from "react-icons/io5";
+//import { IoPerson, IoPricetag, IoHome, IoLogOut } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import { LogOut, reset } from "../features/authSlice";
 
@@ -22,12 +22,12 @@ const Sidebar = () => {
         <ul className="menu-list">
           <li>
             <NavLink to={"/dashboard"} className="flex items-center">
-              <IoHome className="mr-2" /> Dashboard
+              <p className="mr-2" /> Dashboard
             </NavLink>
           </li>
           <li>
             <NavLink to={"/products"} className="flex items-center">
-              <IoPricetag className="mr-2" /> Products
+              <p className="mr-2" /> Products
             </NavLink>
           </li>
         </ul>
@@ -37,7 +37,7 @@ const Sidebar = () => {
             <ul className="menu-list">
               <li>
                 <NavLink to={"/users"} className="flex items-center">
-                  <IoPerson className="mr-2" /> Users
+                  <p className="mr-2" /> Users
                 </NavLink>
               </li>
             </ul>
@@ -48,7 +48,7 @@ const Sidebar = () => {
         <ul className="menu-list">
           <li>
             <button onClick={logout} className="button bg-white flex items-center">
-              <IoLogOut className="mr-2" /> Logout
+              <p className="mr-2" /> Logout
             </button>
           </li>
         </ul>

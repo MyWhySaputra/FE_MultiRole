@@ -14,7 +14,7 @@ export const LoginUser = createAsyncThunk(
   async (user, thunkAPI) => {
     try {
       const response = await axios.post(
-        "https://be-multi-role.vercel.app/api/v1/login",
+        "http://localhost:8080/api/v1/login",
         {
           email: user.email,
           password: user.password,
@@ -33,7 +33,7 @@ export const LoginUser = createAsyncThunk(
 export const getMe = createAsyncThunk("user/getMe", async (_, thunkAPI) => {
   try {
     const response = await axios.get(
-      "https://be-multi-role.vercel.app/api/v1/me"
+      "http://localhost:8080/api/v1/me"
     );
     return response.data;
   } catch (error) {
@@ -45,7 +45,7 @@ export const getMe = createAsyncThunk("user/getMe", async (_, thunkAPI) => {
 });
 
 export const LogOut = createAsyncThunk("user/LogOut", async () => {
-  await axios.delete("https://be-multi-role.vercel.app/api/v1/logout");
+  await axios.delete("http://localhost:8080/api/v1/logout");
 });
 
 export const authSlice = createSlice({

@@ -31,8 +31,10 @@ const Login = () => {
           onSubmit={Auth}
           className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
         >
-          {isError && <p className="text-center mb-4">{message}</p>}
           <h1 className="text-2xl font-bold mb-6 text-center">Sign In</h1>
+          {isError && (
+            <p className="text-center mb-4 text-red-500 z-50">{message}</p>
+          )}
           <div className="mb-4">
             <label
               className="block text-gray-700 text-sm font-bold mb-2"

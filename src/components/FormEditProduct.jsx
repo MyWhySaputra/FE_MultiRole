@@ -13,13 +13,13 @@ const FormEditProduct = () => {
     const getProductById = async () => {
       try {
         const response = await axios.get(
-          `https://be-multi-role.vercel.app/api/v1/products/${id}`
+          `http://localhost:8080/api/v1/products/${id}`
         );
-        setName(response.data.name);
-        setPrice(response.data.price);
+        setName(response.data.data.name);
+        setPrice(response.data.data.price);
       } catch (error) {
         if (error.response) {
-          setMsg(error.response.data.msg);
+          setMsg(error.response.data.message);
         }
       }
     };
@@ -29,73 +29,66 @@ const FormEditProduct = () => {
   const updateProduct = async (e) => {
     e.preventDefault();
     try {
-      await axios.patch(
-        `https://be-multi-role.vercel.app/api/v1/products/${id}`,
-        {
-          name: name,
-          price: price,
-        }
-      );
+      await axios.patch(`http://localhost:8080/api/v1/products/${id}`, {
+        name: name,
+        price: price,
+      });
       navigate("/products");
     } catch (error) {
       if (error.response) {
-        setMsg(error.response.data.msg);
+        setMsg(error.response.data.message);
       }
     }
   };
 
   return (
-    <div>
+    <div className="m-2">
       <h1 className="text-2xl font-bold">Products</h1>
       <h2 className="text-lg font-semibold">Edit Product</h2>
-      <div className="card shadow-none">
-        <div className="card-content">
-          <div className="content">
-            <form onSubmit={updateProduct}>
-              <p className="text-center">{msg}</p>
-              <div className="mb-4">
-                <label
-                  className="block text-gray-700 text-sm font-bold mb-2"
-                  for="name"
-                >
-                  Name
-                </label>
-                <input
-                  type="text"
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  id="name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  placeholder="Product Name"
-                />
-              </div>
-              <div className="mb-4">
-                <label
-                  className="block text-gray-700 text-sm font-bold mb-2"
-                  for="price"
-                >
-                  Price
-                </label>
-                <input
-                  type="text"
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  id="price"
-                  value={price}
-                  onChange={(e) => setPrice(e.target.value)}
-                  placeholder="Price"
-                />
-              </div>
-              <div className="mb-4">
-                <button
-                  type="submit"
-                  className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                >
-                  Update
-                </button>
-              </div>
-            </form>
+      <div className="shadow-none">
+        <form onSubmit={updateProduct}>
+          <p className="text-center text-red-500">{msg}</p>
+          <div className="my-4">
+            <label
+              className="block text-gray-700 text-sm font-bold mb-2"
+              for="name"
+            >
+              Name
+            </label>
+            <input
+              type="text"
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Product Name"
+            />
           </div>
-        </div>
+          <div className="mb-4">
+            <label
+              className="block text-gray-700 text-sm font-bold mb-2"
+              for="price"
+            >
+              Price
+            </label>
+            <input
+              type="text"
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="price"
+              value={price}
+              onChange={(e) => setPrice(e.target.value)}
+              placeholder="Price"
+            />
+          </div>
+          <div className="mb-4">
+            <button
+              type="submit"
+              className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            >
+              Update
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   );

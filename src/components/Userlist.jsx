@@ -24,7 +24,7 @@ const Userlist = () => {
   };
 
   return (
-    <div className="mx-2">
+    <div className="mx-2 pb-20">
       <h1 className="mt-2 text-2xl font-bold">Users</h1>
       <h2 className="mb-3 text-lg font-semibold">List of Users</h2>
       <Link

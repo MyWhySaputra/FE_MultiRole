@@ -14,7 +14,7 @@ const FormAddUser = () => {
   const saveUser = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:8080/api/v1/users", {
+      await axios.post("https://be-multi-role.vercel.app/api/v1/users", {
         name: name,
         email: email,
         password: password,

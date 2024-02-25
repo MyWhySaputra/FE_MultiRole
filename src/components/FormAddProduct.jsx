@@ -11,7 +11,7 @@ const FormAddProduct = () => {
   const saveProduct = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:8080/api/v1/products", {
+      await axios.post("https://be-multi-role.vercel.app/api/v1/products", {
         name: name,
         price: price,
       });

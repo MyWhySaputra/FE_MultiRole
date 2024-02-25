@@ -10,12 +10,12 @@ const ProductList = () => {
   }, []);
 
   const getProducts = async () => {
-    const response = await axios.get("http://localhost:8080/api/v1/products");
+    const response = await axios.get("https://be-multi-role.vercel.app/api/v1/products");
     setProducts(response.data);
   };
 
   const deleteProduct = async (productId) => {
-    await axios.delete(`http://localhost:8080/api/v1/products/${productId}`);
+    await axios.delete(`https://be-multi-role.vercel.app/api/v1/products/${productId}`);
     getProducts();
   };
 

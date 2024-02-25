@@ -11,14 +11,14 @@ const Userlist = () => {
 
   const getUsers = async () => {
     const response = await axios.get(
-      "http://localhost:8080/api/v1/users"
+      "https://be-multi-role.vercel.app/api/v1/users"
     );
     setUsers(response.data);
   };
 
   const deleteUser = async (userId) => {
     await axios.delete(
-      `http://localhost:8080/api/v1/users/${userId}`
+      `https://be-multi-role.vercel.app/api/v1/users/${userId}`
     );
     getUsers();
   };

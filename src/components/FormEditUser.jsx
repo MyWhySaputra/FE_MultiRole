@@ -16,7 +16,7 @@ const FormEditUser = () => {
     const getUserById = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/api/v1/users/${id}`
+          `https://be-multi-role.vercel.app/api/v1/users/${id}`
         );
         setName(response.data.data.name);
         setEmail(response.data.data.email);
@@ -33,7 +33,7 @@ const FormEditUser = () => {
   const updateUser = async (e) => {
     e.preventDefault();
     try {
-      await axios.patch(`http://localhost:8080/api/v1/users/${id}`, {
+      await axios.patch(`https://be-multi-role.vercel.app/api/v1/users/${id}`, {
         name: name,
         email: email,
         password: password,

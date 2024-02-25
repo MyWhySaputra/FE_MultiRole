@@ -13,7 +13,7 @@ const FormEditProduct = () => {
     const getProductById = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/api/v1/products/${id}`
+          `https://be-multi-role.vercel.app/api/v1/products/${id}`
         );
         setName(response.data.data.name);
         setPrice(response.data.data.price);
@@ -29,7 +29,7 @@ const FormEditProduct = () => {
   const updateProduct = async (e) => {
     e.preventDefault();
     try {
-      await axios.patch(`http://localhost:8080/api/v1/products/${id}`, {
+      await axios.patch(`https://be-multi-role.vercel.app/api/v1/products/${id}`, {
         name: name,
         price: price,
       });

@@ -25,7 +25,6 @@ export const LoginUser = createAsyncThunk(
           password: credentials.password,
         }
       );
-      // Mengembalikan respons dan kredensial login
       return { response: response.data, credentials };
     } catch (error) {
       if (error.response) {
@@ -38,8 +37,15 @@ export const LoginUser = createAsyncThunk(
 
 export const getMe = createAsyncThunk("user/getMe", async (_, thunkAPI) => {
   try {
+    const { credentials } = thunkAPI.getState().auth;
     const response = await axios.get(
-      "https://be-multi-role.vercel.app/api/v1/me"
+      "https://be-multi-role.vercel.app/api/v1/me",
+      {
+        auth: {
+          username: credentials.email,
+          password: credentials.password,
+        },
+      }
     );
     return response.data;
   } catch (error) {
@@ -69,7 +75,6 @@ export const authSlice = createSlice({
       state.isSuccess = true;
       state.user = action.payload.response;
       state.isAuthenticated = true;
-      // Menyimpan kredensial login
       state.credentials = {
         email: action.payload.credentials.email,
         password: action.payload.credentials.password,

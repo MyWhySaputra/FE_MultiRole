@@ -8,17 +8,17 @@ import { getMe } from "../features/authSlice";
 const Dashboard = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { user, isError } = useSelector((state) => state.auth);
+  const { isError } = useSelector((state) => state.auth);
 
   useEffect(() => {
     dispatch(getMe());
   }, [dispatch]);
 
   useEffect(() => {
-    if (isError || !user) {
+    if (isError) {
       navigate("/");
     }
-  }, [isError, user, navigate]);
+  }, [isError, navigate]);
 
   return (
     <Layout>

@@ -20,6 +20,8 @@ export const LoginUser = createAsyncThunk(
           password: user.password,
         }
       );
+      // Setelah login berhasil, panggil action getMe
+      thunkAPI.dispatch(getMe());
       return response.data;
     } catch (error) {
       if (error.response) {

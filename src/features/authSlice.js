@@ -3,26 +3,30 @@ import axios from "axios";
 
 const initialState = {
   user: null,
+  isAuthenticated: false,
   isError: false,
   isSuccess: false,
   isLoading: false,
   message: "",
+  credentials: {
+    email: "",
+    password: "",
+  },
 };
 
 export const LoginUser = createAsyncThunk(
   "user/LoginUser",
-  async (user, thunkAPI) => {
+  async (credentials, thunkAPI) => {
     try {
       const response = await axios.post(
         "https://be-multi-role.vercel.app/api/v1/login",
         {
-          email: user.email,
-          password: user.password,
+          email: credentials.email,
+          password: credentials.password,
         }
       );
-      // Setelah login berhasil, panggil action getMe
-      thunkAPI.dispatch(getMe());
-      return response.data;
+      // Mengembalikan respons dan kredensial login
+      return { response: response.data, credentials };
     } catch (error) {
       if (error.response) {
         const message = error.response.data.message;
@@ -63,7 +67,13 @@ export const authSlice = createSlice({
     builder.addCase(LoginUser.fulfilled, (state, action) => {
       state.isLoading = false;
       state.isSuccess = true;
-      state.user = action.payload;
+      state.user = action.payload.response;
+      state.isAuthenticated = true;
+      // Menyimpan kredensial login
+      state.credentials = {
+        email: action.payload.credentials.email,
+        password: action.payload.credentials.password,
+      };
     });
     builder.addCase(LoginUser.rejected, (state, action) => {
       state.isLoading = false;
@@ -71,7 +81,6 @@ export const authSlice = createSlice({
       state.message = action.payload;
     });
 
-    // Get User Login
     builder.addCase(getMe.pending, (state) => {
       state.isLoading = true;
     });
